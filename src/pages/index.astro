@@ -1,0 +1,245 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import headshot from '@/assets/colin-mcgraw.jpeg';
+
+---
+
+<Layout
+	title="Frontend Web Engineer // Colin McGraw"
+	description="I'm a frontend web engineer, welcome to my portfolio 👋"
+>
+	<section id="cm-page" class="cm-home">
+		<div id="cm-layout" class="cm-inner">
+		
+				<div class="cm-title">
+					<div class="cm-title--headshot">
+						<figure>
+							<Image src={headshot} alt="Colin McGraw" width={460} height={460} loading="eager" />
+						</figure>
+					</div>
+					<div class="cm-title--content">
+						<h5>Welcome, my name is</h5>
+						<h1>Colin McGraw</h1>
+						<hr>
+						<p>I'm a frontend web engineer with over a decade of experience. Previously a Tech Lead @ <a href="https://hubspot.com">HubSpot</a>, I'm now lead developer with the talented team @ <a href="https://magneticcreative.com">Magnetic Creative</a>.</p>
+					</div>
+				</div>
+				<div class="cm-detail">
+					<div class="cm-detail--col cm-detail--about">
+						<div class="cm-detail--liner">
+							<h3><span>🤓</span> About Me</h3>
+							<hr>
+							<p>I'm passionate about web technologies - and enjoy using them to produce fast, accessible, and beautiful applications that solve business problems.</p>
+							<h4>Tools & platforms I like:</h4>
+							<ul>
+								<li>React & friends (NextJS, Remix, etc)</li>
+								<li>Backend services like Upstash & Turso</li>
+								<li>Headless CMS's like Sanity</li>
+								<li>Accessible UI kits like Radix</li>
+								<li>Animation tools like GSAP</li>
+							</ul>
+							<p>When I'm not developing, you can find me hanging w/ my wife & kids, or grooving on a drum kit 🥁</p>
+						</div>
+					</div>
+					<div class="cm-detail--col cm-detail--work">
+						<div class="cm-detail--liner">
+							<h3><span>🛠️</span> Recent Work</h3>
+							<hr>
+							<ul>
+								<li>
+									<h4><a href="https://garmoncorp.com" target="_blank">GarmonCorp Website</a></h4>
+									<p>Custom Wordpress theme for a pet supplement manufacturer</p>
+								</li>
+								<li>
+									<h4><a href="https://magneticcreative.com" target="_blank">Magnetic Creative</a></h4>
+									<p>Agency website & blog built on HubSpot CMS</p>
+								</li>
+								<li>
+									<h4><a href="https://se-en.nexgrill.se/" target="_blank">Nexgrill</a></h4>
+									<p>International e-commerce site built on Shopify</p>
+								</li>
+								<li>
+									<h4><a href="https://www.hubspot.com/roi-calculator/marketing" target="_blank">HubSpot ROI Calculator</a></h4>
+									<p>Lead acquisition tool for prospective customers</p>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+		</div>
+	</section>
+	
+</Layout>
+
+<script>
+const page = document.getElementById('cm-page');
+const content = document.getElementById('cm-layout');
+
+const setContentMinHeight = () => {
+	if (!page || !content) return;
+	page.style.minHeight = `${content.offsetHeight + 64}px`;
+};
+
+window.addEventListener('load', setContentMinHeight);
+</script>
+
+<style>
+.cm-home {
+	padding-top: 2rem;
+	padding-bottom: 2rem;
+}
+.cm-inner {
+	width: 90%;
+	max-width: 48rem;
+	margin: 0 auto;
+}
+.cm-title {
+	background-color: var(--color-white);
+	border-radius: var(--border-radius);
+	padding: 1rem;
+	box-shadow: var(--color-dark-alpha) 0 2px 8px;
+}
+.cm-title--headshot {
+	margin-right: 5%;
+	margin-bottom: 1rem;
+
+	figure {
+		position: relative;
+		width: 6rem;
+		height: 6rem;
+		border-radius: var(--border-radius);
+		overflow: hidden;
+		
+		&:after {
+			content: '';
+			display: block;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: var(--color-light);
+			mix-blend-mode: multiply;
+			transition: background-color 1s ease;
+		}
+
+		&:hover {
+			img {
+				transform: scale(1.05) rotate(3deg);
+			}
+			&:after {
+				background-color: var(--color-primary-alpha);
+			}
+		}
+	}
+
+	img {
+		display: block;
+		width: 100%;
+		height: auto;
+		filter: grayscale(1);
+		transition: transform 1s ease, filter 0.67s ease;
+	}
+}
+
+.cm-title--content {
+	p {
+		margin: 0;
+	}
+	hr {
+		border: 0;
+		margin: 0 0 0.5rem;
+		height: 4px;
+		width: 1.25rem;
+		border-radius: 4px;
+		background-color: var(--color-primary);
+	}
+}
+
+.cm-detail {
+	padding-top: 1rem;
+
+	hr {
+		border: 0;
+		margin: 0;
+		height: 4px;
+		background-color: var(--color-light);
+	}
+}
+
+.cm-detail--col {
+	background-color: var(--color-white);
+	border-radius: var(--border-radius);
+	box-shadow: var(--color-dark-alpha) 0 2px 8px;
+}
+
+.cm-detail--about {
+	margin-bottom: 1rem;
+}
+
+.cm-detail--liner {
+	padding: 2rem 1.5rem;
+
+	h3 span {
+		display: inline-block;
+		font-size: 1.1rem;
+		margin-right: 0.333rem;
+	}
+}
+
+.cm-detail--work {
+	li {
+		margin-bottom: 1rem;
+
+		h4 {
+			line-height: 1.55;
+		}
+
+		h4, p {
+			margin: 0;
+		}
+	}
+}
+
+@media (min-width: 767px) {
+	.cm-home {
+		padding: 0;
+		height: 100vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.cm-title {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+	}
+
+	.cm-title--headshot {
+		margin-bottom: 0;
+		
+		figure {
+			width: 14rem;
+			height: 14rem;
+		}
+	}
+
+	.cm-detail {
+		display: flex;
+		justify-content: space-between;
+		gap: 1rem;
+	}
+
+	.cm-detail--about {
+		margin-bottom: 0;
+	}
+
+	.cm-detail--col {
+		width: 50%;
+	}
+}
+
+</style>
