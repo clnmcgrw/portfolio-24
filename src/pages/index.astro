@@ -3,6 +3,14 @@ import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import headshot from '@/assets/colin-mcgraw.jpeg';
 
+const recentWork = [
+	{ title: 'Ecommerce Tactics Deck', description: 'Landing page & gallery for marketing campaign', url: 'https://www.rebuyengine.com/tools/tactics-deck' },
+	{ title: 'GarmonCorp Website', description: 'WP theme for a pet supplement brand', url: 'https://garmoncorp.com' },
+	{ title: 'Magnetic Creative', description: 'Agency website & blog built on HubSpot CMS', url: 'https://magneticcreative.com' },
+	{ title: 'Nexgrill', description: 'Shopify theme for a grill brand', url: 'https://se-en.nexgrill.se/' },
+	{ title: 'HubSpot ROI Calculator', description: 'Lead acquisition tool for prospective customers', url: 'https://www.hubspot.com/roi-calculator/marketing' },
+	{ title: 'Coming-Soon Page', description: 'Simple static landing page built in a day', url: 'https://46386486.hs-sites.com/rai' },
+]
 ---
 
 <Layout
@@ -22,7 +30,10 @@ import headshot from '@/assets/colin-mcgraw.jpeg';
 						<h5>Welcome, my name is</h5>
 						<h1>Colin McGraw</h1>
 						<hr>
-						<p>I'm a frontend web engineer with over a decade of experience. Previously a Tech Lead @ <a href="https://hubspot.com">HubSpot</a>, I'm now lead developer with the talented team @ <a href="https://magneticcreative.com">Magnetic Creative</a>.</p>
+						<p>I'm a frontend web engineer with over a decade of experience.
+							Previously a Lead Dev @ <a href="https://magneticcreative.com">Magnetic</a> 
+							and a Tech Lead @ <a href="https://hubspot.com">HubSpot</a>, 
+							I'm currently Sr. Web Engineer @ <a href="https://rebuyengine.com">Rebuy</a>.</p>
 					</div>
 				</div>
 				<div class="cm-detail">
@@ -35,9 +46,9 @@ import headshot from '@/assets/colin-mcgraw.jpeg';
 							<ul>
 								<li>React & friends (NextJS, Remix, etc)</li>
 								<li>Backend services like Upstash & Turso</li>
-								<li>Headless CMS's like Sanity</li>
+								<li>Headless CMS's like Sanity, Basehub</li>
 								<li>Accessible UI kits like Radix</li>
-								<li>Animation tools like GSAP</li>
+								<li>Motion tools like GSAP & framer-motion</li>
 							</ul>
 							<p>When I'm not developing, you can find me hanging w/ my wife & kids, or grooving on a drum kit 🥁</p>
 						</div>
@@ -47,22 +58,12 @@ import headshot from '@/assets/colin-mcgraw.jpeg';
 							<h3><span>🛠️</span> Recent Work</h3>
 							<hr>
 							<ul>
-								<li>
-									<h4><a href="https://garmoncorp.com" target="_blank">GarmonCorp Website</a></h4>
-									<p>Custom Wordpress theme for a pet supplement manufacturer</p>
-								</li>
-								<li>
-									<h4><a href="https://magneticcreative.com" target="_blank">Magnetic Creative</a></h4>
-									<p>Agency website & blog built on HubSpot CMS</p>
-								</li>
-								<li>
-									<h4><a href="https://se-en.nexgrill.se/" target="_blank">Nexgrill</a></h4>
-									<p>International e-commerce site built on Shopify</p>
-								</li>
-								<li>
-									<h4><a href="https://www.hubspot.com/roi-calculator/marketing" target="_blank">HubSpot ROI Calculator</a></h4>
-									<p>Lead acquisition tool for prospective customers</p>
-								</li>
+								{recentWork.map(({ title, description, url }) => (
+									<li>
+										<h4><a href={url}>{title}</a></h4>
+										<p>{description}</p>
+									</li>
+								))}
 							</ul>
 						</div>
 					</div>
@@ -98,7 +99,7 @@ window.addEventListener('load', setContentMinHeight);
 .cm-title {
 	background-color: var(--color-white);
 	border-radius: var(--border-radius);
-	padding: 1rem;
+	padding: 1.5rem;
 	box-shadow: var(--color-dark-alpha) 0 2px 8px;
 }
 .cm-title--headshot {
@@ -145,6 +146,8 @@ window.addEventListener('load', setContentMinHeight);
 }
 
 .cm-title--content {
+	max-width: 29rem;
+
 	p {
 		margin: 0;
 	}
@@ -194,11 +197,15 @@ window.addEventListener('load', setContentMinHeight);
 		margin-bottom: 1rem;
 
 		h4 {
-			line-height: 1.55;
+			line-height: var(--line-height);
 		}
 
 		h4, p {
 			margin: 0;
+		}
+
+		p {
+			font-size: 0.875rem;
 		}
 	}
 }
